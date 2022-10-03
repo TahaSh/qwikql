@@ -1,0 +1,58 @@
+{
+  "name": "qwikql",
+  "version": "0.0.1",
+  "description": "A GraphQL Client for Qwik Framework",
+  "author": "Taha Shashtari (taha@tahazsh.com)",
+  "main": "./dist/index.qwik.cjs",
+  "qwik": "./dist/index.qwik.mjs",
+  "module": "./dist/index.qwik.mjs",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.qwik.mjs",
+      "require": "./dist/index.qwik.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "dist/types"
+  ],
+  "engines": {
+    "node": ">=15.0.0"
+  },
+  "private": false,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "qwik build",
+    "build.lib": "vite build --mode lib",
+    "build.types": "tsc --emitDeclarationOnly",
+    "fmt": "prettier --write .",
+    "fmt.check": "prettier --check .",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "release": "np",
+    "qwik": "qwik"
+  },
+  "peerDependencies": {
+    "@builder.io/qwik": "0.9.0",
+    "graphql": "^16.6.0",
+    "graphql-request": "^5.0.0"
+  },
+  "devDependencies": {
+    "@builder.io/qwik": "0.9.0",
+    "@types/eslint": "8.4.6",
+    "@types/node": "latest",
+    "@typescript-eslint/eslint-plugin": "5.37.0",
+    "@typescript-eslint/parser": "5.37.0",
+    "esinstall": "^1.1.7",
+    "eslint": "8.23.1",
+    "eslint-plugin-qwik": "latest",
+    "graphql": "^16.6.0",
+    "graphql-request": "^5.0.0",
+    "node-fetch": "3.2.10",
+    "np": "7.6.1",
+    "prettier": "2.7.1",
+    "typescript": "4.8.3",
+    "vite": "3.1.1"
+  }
+}
