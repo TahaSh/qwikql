@@ -13,7 +13,7 @@ import {
 
 interface QwikQLProps {
   url: string
-  headers: Record<string, string>
+  headers?: Record<string, string>
 }
 
 export const QwikQL = component$((props: QwikQLProps) => {
