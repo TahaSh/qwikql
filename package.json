@@ -1,6 +1,6 @@
 {
   "name": "qwikql",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A GraphQL Client for Qwik Framework",
   "author": "Taha Shashtari (taha@tahazsh.com)",
   "main": "./dist/index.qwik.cjs",
@@ -54,5 +54,9 @@
     "prettier": "2.7.1",
     "typescript": "4.8.3",
     "vite": "3.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TahaSh/qwikql.git"
   }
 }
