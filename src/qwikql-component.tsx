@@ -1,6 +1,7 @@
 import {
   $,
   component$,
+  QRL,
   Slot,
   useContextProvider,
   useStore
@@ -14,7 +15,10 @@ import {
 interface QwikQLProps {
   url: string
   headers?: Record<string, string>
+  after$?: QRL<((resp: Response) => {})>
 }
+
+export const defaultAfter = $(() => {});
 
 export const QwikQL = component$((props: QwikQLProps) => {
   if (!props.url) {
@@ -23,7 +27,7 @@ export const QwikQL = component$((props: QwikQLProps) => {
 
   const context = useStore({ headers: props.headers || {} })
 
-  useContextProvider(QwikqlURLContext, { url: props.url })
+  useContextProvider(QwikqlURLContext, { url: props.url, after$: props.after$ || defaultAfter })
   useContextProvider(QwikqlRequestContextContext, context)
   useContextProvider(
     QwikqlSetHeadersContext,

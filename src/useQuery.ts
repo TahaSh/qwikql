@@ -7,14 +7,12 @@ interface QueryConfig {
   variables?: Record<string, any>
 }
 
-export const defaultAfter = () => {};
+export const defaultAfter$ = $(() => {});
 
 export const useQuery = (query: RequestDocument) => {
   const queryAsString = query.toString()
-  const { url, after } = useContext(QwikqlURLContext)
+  const { url, after$ = defaultAfter$ } = useContext(QwikqlURLContext)
   const requestContext = useContext(QwikqlRequestContextContext)
-
-  const qwikAfter$ = $(after || defaultAfter)
 
   const executeQuery$ = $(async (queryConfig: Partial<QueryConfig> = {}) => {
     try {
@@ -25,7 +23,7 @@ export const useQuery = (query: RequestDocument) => {
         requestContext.headers
       );
 
-      qwikAfter$(response);
+      after$(response);
 
       return response.data;
     } catch (error) {
