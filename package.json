@@ -34,7 +34,7 @@
     "qwik": "qwik"
   },
   "peerDependencies": {
-    "@builder.io/qwik": "0.9.0",
+    "@builder.io/qwik": "^0.9.0",
     "graphql": "^16.6.0",
     "graphql-request": "^5.0.0"
   },
