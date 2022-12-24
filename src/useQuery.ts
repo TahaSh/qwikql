@@ -1,5 +1,5 @@
 import { useContext, $ } from '@builder.io/qwik'
-import { request, RequestDocument } from 'graphql-request'
+import { rawRequest, RequestDocument } from 'graphql-request'
 import { QwikqlRequestContextContext, QwikqlURLContext } from './contexts'
 import { toQwikqlError } from './util/toQwikqlError'
 
@@ -7,19 +7,27 @@ interface QueryConfig {
   variables?: Record<string, any>
 }
 
+export const defaultAfter = () => {};
+
 export const useQuery = (query: RequestDocument) => {
   const queryAsString = query.toString()
-  const url = useContext(QwikqlURLContext).url
+  const { url, after } = useContext(QwikqlURLContext)
   const requestContext = useContext(QwikqlRequestContextContext)
+
+  const qwikAfter$ = $(after || defaultAfter)
 
   const executeQuery$ = $(async (queryConfig: Partial<QueryConfig> = {}) => {
     try {
-      return await request({
+      const response = await rawRequest(
         url,
-        document: queryAsString,
-        variables: queryConfig.variables || undefined,
-        requestHeaders: requestContext.headers
-      })
+        queryAsString,
+        queryConfig.variables || undefined,
+        requestContext.headers
+      );
+
+      qwikAfter$(response);
+
+      return response.data;
     } catch (error) {
       return Promise.reject(toQwikqlError(error))
     }
