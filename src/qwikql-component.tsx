@@ -11,6 +11,7 @@ import {
   QwikqlSetHeadersContext,
   QwikqlURLContext
 } from './contexts'
+import { Response } from './types';
 
 interface QwikQLProps {
   url: string

@@ -7,11 +7,9 @@ interface QueryConfig {
   variables?: Record<string, any>
 }
 
-export const defaultAfter$ = $(() => {});
-
 export const useQuery = (query: RequestDocument) => {
   const queryAsString = query.toString()
-  const { url, after$ = defaultAfter$ } = useContext(QwikqlURLContext)
+  const { url, after$ } = useContext(QwikqlURLContext)
   const requestContext = useContext(QwikqlRequestContextContext)
 
   const executeQuery$ = $(async (queryConfig: Partial<QueryConfig> = {}) => {
