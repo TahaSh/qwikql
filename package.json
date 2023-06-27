@@ -1,5 +1,5 @@
 {
-  "name": "qwikql",
+  "name": "qwikql-ext",
   "version": "0.0.2",
   "description": "A GraphQL Client for Qwik Framework",
   "author": "Taha Shashtari (taha@tahazsh.com)",
