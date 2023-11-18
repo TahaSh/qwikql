@@ -8,11 +8,13 @@ import {
 import {
   QwikqlRequestContextContext,
   QwikqlSetHeadersContext,
+  QwikqlTimeoutContext,
   QwikqlURLContext
 } from './contexts'
 
 interface QwikQLProps {
   url: string
+  timeout?: number
   headers?: Record<string, string>
 }
 
@@ -25,6 +27,7 @@ export const QwikQL = component$((props: QwikQLProps) => {
 
   useContextProvider(QwikqlURLContext, { url: props.url })
   useContextProvider(QwikqlRequestContextContext, context)
+  useContextProvider(QwikqlTimeoutContext, { timeout: props.timeout })
   useContextProvider(
     QwikqlSetHeadersContext,
     $((headers) => {
